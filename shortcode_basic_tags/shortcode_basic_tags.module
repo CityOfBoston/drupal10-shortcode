@@ -619,7 +619,7 @@ function shortcode_basic_tags_shortcode_item($attrs, $text) {
 
   return theme('shortcode_item',
     array(
-      'text' => check_plain($text),
+      'text' => $text,
       'id' => check_plain($attrs['id']),
       'class' => shortcode_add_class($attrs['class']),
       'type' => $type,
