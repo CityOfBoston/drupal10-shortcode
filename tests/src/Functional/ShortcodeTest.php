@@ -1,17 +1,21 @@
 <?php
 
-namespace Drupal\shortcode\Tests;
+namespace Drupal\Tests\shortcode\Functional;
 
+use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\Url;
-use Drupal\simpletest\WebTestBase;
-use Drupal\shortcode\Shortcode\ShortcodeService;
 
 /**
  * Tests the Drupal 8 shortcode module functionality.
  *
  * @group shortcode
  */
-class ShortcodeTest extends WebTestBase {
+class ShortcodeTest extends BrowserTestBase {
+
+  /**
+  * {@inheritdoc}
+  */
+  protected $defaultTheme = 'stark';
 
   /**
    * Modules to install.
@@ -23,16 +27,23 @@ class ShortcodeTest extends WebTestBase {
   /**
    * The shortcode service.
    *
-   * @var \Drupal\shortcode\Shortcode\ShortcodeService
+   * @var \Drupal\shortcode\ShortcodeService
    */
   private $shortcodeService;
+
+  /**
+   * Url of the site.
+   *
+   * @var \Drupal\Core\GeneratedUrl|string
+   */
+  private $siteUrl;
 
   /**
    * Perform any initial set up tasks that run before every test method.
    */
   public function setUp() {
     parent::setUp();
-    $this->shortcodeService = \Drupal::service('shortcode');
+    $this->shortcodeService = $this->container->get('shortcode');
     $this->siteUrl = Url::fromRoute('<front>', [], ["absolute" => TRUE])->toString();
   }
 
