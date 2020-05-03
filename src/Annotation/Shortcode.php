@@ -63,7 +63,7 @@ class Shortcode extends Plugin {
    *  (optional)
    * @ingroup plugin_translatable
    */
-  public $description = '';
+  public $description;
 
   /**
    * Whether this shortcode is enabled or disabled by default.
@@ -79,7 +79,7 @@ class Shortcode extends Plugin {
    * Shortcodes with lower weights are processed
    * first.
    *
-   * @var bool
+   * @var int
    *  (optional)
    */
   public $weight = 99;
