@@ -7,16 +7,17 @@ use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 
 /**
  * Defines the interface for text processing shortcode plugins.
  *
  * @see \Drupal\shortcode\Annotation\Shortcode
- * @see \Drupal\shortcode\ShortCode\ShortcodePluginManager
+ * @see \Drupal\shortcode\ShortcodePluginManager
  * @see \Drupal\shortcode\Plugin\ShortcodeBase
  * @see plugin_api
  */
-interface ShortcodeInterface extends ConfigurableInterface, DependentPluginInterface, PluginInspectionInterface {
+interface ShortcodeInterface extends ConfigurableInterface, DependentPluginInterface, PluginInspectionInterface, ContainerFactoryPluginInterface {
 
   /**
    * Returns the administrative label for this shortcode plugin.
@@ -38,7 +39,7 @@ interface ShortcodeInterface extends ConfigurableInterface, DependentPluginInter
    * Generates a shortcode's settings form.
    *
    * @param array $form
-   *   A minimally prepopulated form array.
+   *   A minimally pre-populated form array.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The state of the (entire) configuration form.
    *
