@@ -13,7 +13,7 @@ use Drupal\Component\Utility\UrlHelper;
  * Provides a base class for Shortcode plugins.
  *
  * @see \Drupal\filter\Annotation\Filter
- * @see \Drupal\shortcode\Shortcode\ShortcodePluginManager
+ * @see \Drupal\shortcode\ShortcodePluginManager
  * @see \Drupal\shortcode\Plugin\ShortcodeInterface
  * @see plugin_api
  */
@@ -136,6 +136,7 @@ abstract class ShortcodeBase extends PluginBase implements ShortcodeInterface {
    * {@inheritdoc}
    */
   public function tips($long = FALSE) {
+    return '';
   }
 
   /**
@@ -182,17 +183,20 @@ abstract class ShortcodeBase extends PluginBase implements ShortcodeInterface {
    *   The proper classes string.
    */
   public function addClass($classes = '', $new_class = '') {
-    if (empty($classes)) {
-      $classes = [];
+    $return = [];
+    if (is_array($classes)) {
+      $return = $classes;
     }
-    elseif (!is_array($classes)) {
-      $classes = explode(' ', Html::escape($classes));
+    else {
+      $return = explode(' ', Html::escape($classes));
     }
 
-    $classes[] = Html::escape($new_class);
-    $classes = array_unique($classes);
+    if ($new_class) {
+      $return[] = Html::escape($new_class);
+    }
+    $return = array_unique($return);
 
-    return implode(' ', $classes);
+    return implode(' ', $return);
   }
 
   /**
