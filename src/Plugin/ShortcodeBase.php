@@ -8,6 +8,8 @@ use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Url;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\shortcode_basic_tags\Plugin\Shortcode\ClearShortcode;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a base class for Shortcode plugins.
@@ -56,6 +58,17 @@ abstract class ShortcodeBase extends PluginBase implements ShortcodeInterface {
     $this->provider = $this->pluginDefinition['provider'];
 
     $this->setConfiguration($configuration);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition
+    );
   }
 
   /**
