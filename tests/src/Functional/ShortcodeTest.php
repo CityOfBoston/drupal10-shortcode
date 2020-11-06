@@ -13,8 +13,8 @@ use Drupal\Core\Url;
 class ShortcodeTest extends BrowserTestBase {
 
   /**
-  * {@inheritdoc}
-  */
+   * {@inheritdoc}
+   */
   protected $defaultTheme = 'stark';
 
   /**

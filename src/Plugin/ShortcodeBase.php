@@ -8,7 +8,6 @@ use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Url;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\UrlHelper;
-use Drupal\shortcode_basic_tags\Plugin\Shortcode\ClearShortcode;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

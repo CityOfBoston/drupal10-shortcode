@@ -4,7 +4,6 @@ namespace Drupal\shortcode;
 
 use Drupal\filter\Plugin\FilterInterface;
 use Drupal\Core\Language\Language;
-use Drupal\shortcode\ShortcodePluginManager;
 
 /**
  * Provide the ShortCode service.
@@ -14,7 +13,7 @@ class ShortcodeService {
   /**
    * The devel dumper plugin manager.
    *
-   * @var \Drupal\devel\DevelDumperPluginManagerInterface
+   * @var \Drupal\shortcode\ShortcodePluginManager
    */
   protected $shortCodePluginManager;
 
@@ -268,7 +267,7 @@ class ShortcodeService {
         }
         // This is a valid shortcode tag, and self-closing.
         elseif (substr($c, -1, 1) == '/') {
-          // Processes a self closing tag, - it has "/" at the end-
+          // Processes a self closing tag, - it has "/" at the end.
           /*
            * The exploded array elements meaning:
            * 0 - the full tag text?
