@@ -39,34 +39,4 @@ class ShortcodeCorrector extends FilterBase {
     return new FilterProcessResult($text);
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function tips($long = FALSE) {
-
-    // Get enabled shortcodes for a specific text format.
-    // Drupal 7 way:
-    // $shortcodes = shortcode_list_all_enabled($format);
-    // Drupal 8 way:
-    /** @var \Drupal\shortcode\Shortcode\ShortcodePluginManager $type */
-    $type = \Drupal::service('plugin.manager.shortcode');
-    $shortcodes = $type->getDefinitions();
-
-    // Gather tips defined in all enabled plugins.
-    $tips = [];
-
-    foreach ($shortcodes as $plugin_id => $shortcode_info) {
-      /** @var \Drupal\shortcode\Plugin\ShortcodeInterface $shortcode */
-      $shortcode = $type->createInstance($plugin_id);
-      $tips[] = $shortcode->tips($long);
-
-    }
-
-    $output = '';
-    foreach ($tips as $tip) {
-      $output .= '<li>' . $tip . '</li>';
-    }
-    return '<p>You can use wp-like shortcodes such as: </p><ul>' . $output . '</ul>';
-  }
-
 }
