@@ -2,6 +2,7 @@ name: 'Shortcode Basic Tags'
 type: module
 description: 'Provides basic shortcode tags like highlight, dropcap, etc.'
 core: 8.x
+core_version_requirement: ^8 || ^9
 dependencies:
-  - shortcode
+  - shortcode:shortcode
 package: 'Input filters'
