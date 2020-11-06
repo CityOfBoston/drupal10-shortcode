@@ -30,7 +30,7 @@ class BlockShortcode extends ShortcodeBase {
       $attributes
     );
 
-    if (intval($attributes['id'])) {
+    if ((int) $attributes['id']) {
       $block_entity = BlockContent::load($attributes['id']);
       if ($block_entity) {
         $block_view = \Drupal::entityTypeManager()->getViewBuilder('block_content')->view($block_entity, $attributes['view']);
