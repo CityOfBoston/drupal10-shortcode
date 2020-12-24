@@ -243,7 +243,7 @@ abstract class ShortcodeBase extends PluginBase implements ShortcodeInterface {
     }
     else {
       /** @var \Drupal\Core\Path\AliasManager $alias_manager */
-      $alias_manager = \Drupal::service('path.alias_manager');
+      $alias_manager = \Drupal::service('path_alias.manager');
       $alias = $alias_manager->getAliasByPath($path);
     }
 
