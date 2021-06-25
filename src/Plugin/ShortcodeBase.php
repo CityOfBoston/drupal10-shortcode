@@ -347,7 +347,11 @@ abstract class ShortcodeBase extends PluginBase implements ShortcodeInterface {
       'alt' => '',
       'path' => '',
     ];
-    if (intval($mid)) {
+    $media_entity = NULL;
+    $field_media = NULL;
+    $file = NULL;
+
+    if ((int) $mid) {
       $media_entity = Media::load($mid);
     }
     if ($media_entity) {
