@@ -3,8 +3,10 @@
 namespace Drupal\shortcode_basic_tags\Plugin\Shortcode;
 
 use Drupal\block_content\Entity\BlockContent;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\Language;
 use Drupal\shortcode\Plugin\ShortcodeBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Insert div or span around the text with some css classes.
@@ -16,6 +18,36 @@ use Drupal\shortcode\Plugin\ShortcodeBase;
  * )
  */
 class BlockShortcode extends ShortcodeBase {
+
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * Constructs a new EntityField.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
+    $this->entityTypeManager = $entity_type_manager;
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_type.manager')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -33,7 +65,7 @@ class BlockShortcode extends ShortcodeBase {
     if ((int) $attributes['id']) {
       $block_entity = BlockContent::load($attributes['id']);
       if ($block_entity) {
-        $block_view = \Drupal::entityTypeManager()->getViewBuilder('block_content')->view($block_entity, $attributes['view']);
+        $block_view = $this->entityTypeManager->getViewBuilder('block_content')->view($block_entity, $attributes['view']);
         if ($block_view) {
           return \Drupal::service('renderer')->render($block_view);
         }
