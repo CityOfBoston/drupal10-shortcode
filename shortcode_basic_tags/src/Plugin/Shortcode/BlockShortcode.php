@@ -5,11 +5,12 @@ namespace Drupal\shortcode_basic_tags\Plugin\Shortcode;
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\Language;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\shortcode\Plugin\ShortcodeBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Insert div or span around the text with some css classes.
+ * Insert a custom block to the text.
  *
  * @Shortcode(
  *   id = "block",
@@ -27,14 +28,36 @@ class BlockShortcode extends ShortcodeBase {
   protected $entityTypeManager;
 
   /**
-   * Constructs a new EntityField.
+   * The renderer service.
    *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
+   * Constructs a new Shortcode plugin.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin ID for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
-    $this->entityTypeManager = $entity_type_manager;
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    EntityTypeManagerInterface $entity_type_manager,
+    RendererInterface $renderer
+  ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->entityTypeManager = $entity_type_manager;
+    $this->renderer = $renderer;
   }
 
   /**
@@ -45,7 +68,8 @@ class BlockShortcode extends ShortcodeBase {
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('renderer')
     );
   }
 
@@ -67,7 +91,7 @@ class BlockShortcode extends ShortcodeBase {
       if ($block_entity) {
         $block_view = $this->entityTypeManager->getViewBuilder('block_content')->view($block_entity, $attributes['view']);
         if ($block_view) {
-          return \Drupal::service('renderer')->render($block_view);
+          return $this->renderer->render($block_view);
         }
       }
     }
