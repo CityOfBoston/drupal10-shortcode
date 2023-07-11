@@ -42,7 +42,7 @@ class ImageShortcode extends ShortcodeBase {
           $attributes['src'] = ImageStyle::load($attributes['imagestyle'])->buildUrl($properties['path']);
         }
         else {
-          $attributes['src'] = file_create_url($properties['path']);
+           $attributes['src'] = \Drupal::service('file_url_generator')->generateAbsoluteString($properties['path']);
         }
       }
       if ($properties['alt'] && !$attributes['alt']) {
