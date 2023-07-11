@@ -1,0 +1,12 @@
+{
+  "name": "drupal/shortcode",
+  "description": "Share current page to social media",
+  "type": "drupal-module",
+  "homepage": "https://drupal.org/project/shortcode",
+  "authors": [],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/shortcode",
+    "source": "http://cgit.drupalcode.org/shortcode"
+  },
+  "license": "GPL-2.0+"
+}
