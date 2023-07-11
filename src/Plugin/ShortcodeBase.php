@@ -301,7 +301,7 @@ abstract class ShortcodeBase extends PluginBase implements ShortcodeInterface {
     $field_media = $this->getMediaField($media_entity);
     if ($field_media) {
       $file = $field_media->entity;
-      return file_create_url($file->getFileUri());
+      return \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
     }
     return FALSE;
   }
