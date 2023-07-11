@@ -111,7 +111,7 @@ class ShortcodeTest extends BrowserTestBase {
 
     foreach ($sets as $set) {
       $output = $this->shortcodeService->process($set['input']);
-      $this->assertEqual($output, $set['output'], $set['message']);
+      $this->assertEquals($output, $set['output'], $set['message']);
     }
   }
 
@@ -135,7 +135,7 @@ class ShortcodeTest extends BrowserTestBase {
 
     foreach ($sets as $set) {
       $output = $this->shortcodeService->process($set['input']);
-      $this->assertEqual($output, $set['output'], $set['message']);
+      $this->assertEquals($output, $set['output'], $set['message']);
     }
   }
 
@@ -147,12 +147,12 @@ class ShortcodeTest extends BrowserTestBase {
     $test_input = '[highlight]highlighted text[/highlight]';
     $expected_output = '<span class="highlight">highlighted text</span>';
     $output = $this->shortcodeService->process($test_input);
-    $this->assertEqual($output, $expected_output, 'Highlight shortcode output matches.');
+    $this->assertEquals($output, $expected_output, 'Highlight shortcode output matches.');
 
     $test_input = '[highlight class="custom-class"]highlighted text[/highlight]';
     $expected_output = '<span class="custom-class highlight">highlighted text</span>';
     $output = $this->shortcodeService->process($test_input);
-    $this->assertEqual($output, $expected_output, 'Highlight shortcode with custom class output matches.');
+    $this->assertEquals($output, $expected_output, 'Highlight shortcode with custom class output matches.');
   }
 
   /**
@@ -175,7 +175,7 @@ class ShortcodeTest extends BrowserTestBase {
 
     foreach ($sets as $set) {
       $output = $this->shortcodeService->process($set['input']);
-      $this->assertEqual($output, $set['output'], $set['message']);
+      $this->assertEquals($output, $set['output'], $set['message']);
     }
   }
 
@@ -209,7 +209,7 @@ class ShortcodeTest extends BrowserTestBase {
 
     foreach ($sets as $set) {
       $output = $this->shortcodeService->process($set['input']);
-      $this->assertEqual($output, $set['output'], $set['message']);
+      $this->assertEquals($output, $set['output'], $set['message']);
     }
   }
 
@@ -243,7 +243,7 @@ class ShortcodeTest extends BrowserTestBase {
 
     foreach ($sets as $set) {
       $output = $this->shortcodeService->process($set['input']);
-      $this->assertEqual($output, $set['output'], $set['message']);
+      $this->assertEquals($output, $set['output'], $set['message']);
     }
   }
 
@@ -273,7 +273,7 @@ class ShortcodeTest extends BrowserTestBase {
     foreach ($sets as $set) {
       $output = $this->shortcodeService->process($set['input']);
       $output = preg_replace('/\s+/', ' ', $output);
-      $this->assertEqual($output, $set['output'], $set['message']);
+      $this->assertEquals($output, $set['output'], $set['message']);
     }
   }
 
@@ -302,7 +302,7 @@ class ShortcodeTest extends BrowserTestBase {
 
     foreach ($sets as $set) {
       $output = $this->shortcodeService->process($set['input']);
-      $this->assertEqual(strlen($output), $set['output'], $set['message']);
+      $this->assertEquals(strlen($output), $set['output'], $set['message']);
     }
   }
 
