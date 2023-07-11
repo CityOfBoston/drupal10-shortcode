@@ -72,7 +72,7 @@ class ShortcodeTest extends BrowserTestBase {
 
     foreach ($sets as $set) {
       $output = $this->shortcodeService->process($set['input']);
-      $this->assertEqual($output, $set['output'], $set['message']);
+      $this->assertEquals($output, $set['output'], $set['message']);
     }
   }
 
