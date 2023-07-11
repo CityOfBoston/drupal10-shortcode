@@ -1,6 +1,6 @@
 {
-  "name": "cityofboston/drupal10-shortcode",
-  "description": "Share current page to social media",
+  "name": "cityofboston/shortcode",
+  "description": "Drupal 10 port for shortcode",
   "type": "drupal-module",
   "homepage": "https://drupal.org/project/shortcode",
   "authors": [],
