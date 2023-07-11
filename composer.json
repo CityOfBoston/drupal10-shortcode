@@ -1,12 +1,12 @@
 {
-  "name": "drupal/shortcode",
+  "name": "cityofboston/drupal10-shortcode",
   "description": "Share current page to social media",
   "type": "drupal-module",
   "homepage": "https://drupal.org/project/shortcode",
   "authors": [],
   "support": {
     "issues": "https://www.drupal.org/project/issues/shortcode",
-    "source": "http://cgit.drupalcode.org/shortcode"
+    "source": "https://github.com/CityOfBoston/drupal10-shortcode"
   },
   "license": "GPL-2.0+"
 }
